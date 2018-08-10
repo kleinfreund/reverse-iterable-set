@@ -13,8 +13,6 @@ A reverse-iterable set implementation based on the built-in [Set](https://develo
 * [Tests](#tests)
 * [Documentation](#documentation)
   * [Constructor](#constructor)
-  * [`first`](#first)
-  * [`last`](#last)
   * [`add()`](#add)
   * [`clear()`](#clear)
   * [`delete()`](#delete)
