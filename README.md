@@ -21,7 +21,7 @@ A reverse-iterable set implementation based on the built-in [Set](https://develo
   * [`forEachReverse()`](#foreachreverse)
   * [`has()`](#has)
   * [`iteratorFor()`](#iteratorfor)
-  * [`reverse()`](#reverse)
+  * [`reverseIterator()`](#reverseiterator)
   * [`values()`](#values)
   * [`[Symbol.iterator]()`](#symboliterator)
 
@@ -100,11 +100,11 @@ new ReverseIterableSet([iterable])
 ```js
 const set = new ReverseIterableSet([1, 2, 3]);
 
-for (const value of set.reverse()) {
+for (const value of set.reverseIterator()) {
   console.log(value);
 }
 
-[...set.reverse()]
+[...set.reverseIterator()]
 ```
 
 
@@ -204,7 +204,7 @@ set.delete('2');
 
 Returns an iterator containing the `[value, value]` pairs for each value in the `ReverseIterableSet` object in insertion order.
 
-An iterator containing the same pairs in reverse-insertion order can be obtained with `entries().reverse()`.
+An iterator containing the same pairs in reverse-insertion order can be obtained with `entries().reverseIterator()`.
 
 #### Syntax
 
@@ -299,7 +299,7 @@ Returns an iterator containing the values in the `ReverseIterableSet` object in 
 
 This allows starting iteration at a specific value in the `ReverseIterableSet` object.
 
-An iterator containing the same values in reverse-insertion order can be obtained with `iteratorFor().reverse()`.
+An iterator containing the same values in reverse-insertion order can be obtained with `iteratorFor().reverseIterator()`.
 
 #### Syntax
 
@@ -333,7 +333,7 @@ iterator.next().value;
 //> undefined
 
 // Reverse-iterator, starting at the element with key 1.
-const reverseIterator = set.iteratorFor(2).reverse();
+const reverseIterator = set.iteratorFor(2).reverseIterator();
 
 reverseIterator.next().value;
 //> 2
@@ -347,26 +347,26 @@ reverseIterator.next().value;
 
 
 
-### `reverse()`
+### `reverseIterator()`
 
-In theory, following the semantics of `[Symbol.iterator]()`, this should be `[Symbol.reverseIterator]()`. However, as a developer, I cannot define a well-known symbol myself and make use of it. For the time being, the `reverse()` function serves the same purpose.
+In theory, following the semantics of `[Symbol.iterator]()`, this should be `[Symbol.reverseIterator]()`. However, as a developer, I cannot define a well-known symbol myself and make use of it. For the time being, the `reverseIterator()` function serves the same purpose.
 
 #### Syntax
 
 ```
-set.reverse();
+set.reverseIterator();
 ```
 
 **Return value**:
 
-The set **reverse-iterator** function, which is the `values().reverse()` function by default.
+The set **reverse-iterator** function, which is the `values().reverseIterator()` function by default.
 
 #### Usage
 
 ```js
 const set = new ReverseIterableSet([1, 2, 4]);
 
-const reverseIterator = set.reverse();
+const reverseIterator = set.reverseIterator();
 
 reverseIterator.next().value;
 //> 4
@@ -387,7 +387,7 @@ reverseIterator.next().value;
 
 Returns an iterator containing the values in the `ReverseIterableSet` object in insertion order.
 
-An iterator containing the same values in reverse-insertion order can be obtained with `values().reverse()`.
+An iterator containing the same values in reverse-insertion order can be obtained with `values().reverseIterator()`.
 
 #### Syntax
 
