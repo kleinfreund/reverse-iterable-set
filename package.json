@@ -1,6 +1,6 @@
 {
   "name": "reverse-iterable-set",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A reverse-iterable set implementation based on the built-in Set object",
   "main": "./src/reverse-iterable-set",
   "engines": {
