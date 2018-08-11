@@ -71,6 +71,7 @@ function printCodeBlock(content, ...classNames) {
 function printExamples() {
   printCommand('const set = new ReverseIterableSet(["1", "2", "3"]);');
   const set = new ReverseIterableSet(['1', '2', '3']);
+  printOutput(set);
 
   printCommand(`
 for (const value of set) {
@@ -159,7 +160,7 @@ set
   .add("2")
   .add("4")
   .addInFront("37")
-  .add("5");
+  .add("5")
   `);
   set
     .add('2')
@@ -173,22 +174,23 @@ set
   printCommand('set.size');
   printOutput(set.size);
 
-  printCommand('const it = set.iteratorFor("3").reverseIterator();');
+  printCommand('const it = set.iteratorFor("3").reverseIterator()');
   const it = set.iteratorFor('3').reverseIterator();
+  printOutput(it);
 
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
-  printCommand('it.next().value;');
+  printCommand('it.next().value');
   printOutput(it.next().value);
 
   printCommand(`
 set.forEach(value => {
   console.log(value);
-});
+})
   `);
   set.forEach(value => {
     printLog(value);
@@ -197,7 +199,7 @@ set.forEach(value => {
   printCommand(`
 set.forEachReverse(value => {
   console.log(value);
-});
+})
   `);
   set.forEachReverse(value => {
     printLog(value);
@@ -206,14 +208,18 @@ set.forEachReverse(value => {
   printCommand('set.toString()');
   printOutput(set.toString());
 
-  printCommand('const set2 = new ReverseIterableSet([..."hello"]);');
+  document.body.insertAdjacentHTML('beforeend', '<hr>');
+
+  printCommand('const set2 = new ReverseIterableSet([..."hello"])');
   const set2 = new ReverseIterableSet([...'hello']);
+  printOutput(set2);
 
   printCommand('[...set2]');
   printOutput([...set2]);
 
-  printCommand('const it2 = set2.iteratorFor("l");');
+  printCommand('const it2 = set2.iteratorFor("l")');
   const it2 = set2.iteratorFor('l');
+  printOutput(it2);
 
   printCommand('it2.next().value');
   printOutput(it2.next().value);
