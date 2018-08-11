@@ -2,6 +2,12 @@
 
 The `ReverseIterableSet` object is a reverse-iterable set implementation based on the built-in [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) object.
 
+Links:
+
+- [**npmjs.com**/package/reverse-iterable-set](https://www.npmjs.com/package/reverse-iterable-set)
+- [**github.com**/kleinfreund/reverse-iterable-set](https://github.com/kleinfreund/reverse-iterable-set)
+- [kleinfreund.github.io/reverse-iterable-set](https://kleinfreund.github.io/reverse-iterable-set)
+
 See also:
 
 - `ReverseIterableArray`: [reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
