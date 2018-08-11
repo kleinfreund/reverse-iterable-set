@@ -1,6 +1,11 @@
 # reverse-iterable-set
 
-A reverse-iterable set implementation based on the built-in [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) object.
+The `ReverseIterableSet` object is a reverse-iterable set implementation based on the built-in [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) object.
+
+See also:
+
+- `ReverseIterableArray`: [reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
+- `ReverseIterableMap`: [reverse-iterable-map](https://www.npmjs.com/package/reverse-iterable-map)
 
 
 
