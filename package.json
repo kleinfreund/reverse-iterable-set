@@ -1,18 +1,22 @@
 {
   "name": "reverse-iterable-set",
-  "version": "1.0.1",
   "description": "A reverse-iterable set implementation based on the built-in Set object",
-  "main": "./src/reverse-iterable-set",
+  "version": "1.0.1",
+  "main": "./src/reverse-iterable-set.mjs",
+  "module": "./src/reverse-iterable-set.mjs",
+  "repository": "kleinfreund/reverse-iterable-set",
+  "homepage": "https://kleinfreund.github.io/reverse-iterable-set",
+  "author": {
+    "name": "Philipp Rudloff",
+    "url": "https://kleinfreund.de"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">=8.5"
   },
   "scripts": {
     "test": "node --experimental-modules test/tests.mjs",
     "examples": "node ./node_modules/.bin/http-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kleinfreund/reverse-iterable-set.git"
   },
   "keywords": [
     "set",
@@ -21,15 +25,9 @@
     "iterable",
     "iterator"
   ],
-  "author": {
-    "name": "Philipp Rudloff",
-    "url": "https://kleinfreund.de"
-  },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kleinfreund/reverse-iterable-set/issues"
   },
-  "homepage": "https://kleinfreund.github.io/reverse-iterable-set",
   "devDependencies": {
     "http-server": "^0.11.1"
   }
