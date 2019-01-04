@@ -2,8 +2,6 @@
   "name": "reverse-iterable-set",
   "description": "A reverse-iterable set implementation based on the built-in Set object",
   "version": "1.0.3",
-  "main": "./src/reverse-iterable-set.mjs",
-  "module": "./src/reverse-iterable-set.mjs",
   "repository": "kleinfreund/reverse-iterable-set",
   "homepage": "https://kleinfreund.github.io/reverse-iterable-set",
   "author": {
@@ -11,6 +9,11 @@
     "url": "https://kleinfreund.de"
   },
   "license": "MIT",
+  "main": "./src/reverse-iterable-set.mjs",
+  "module": "./src/reverse-iterable-set.mjs",
+  "files": [
+    "src/"
+  ],
   "engines": {
     "node": ">=8.5"
   },
