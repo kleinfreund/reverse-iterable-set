@@ -6,7 +6,6 @@ Links:
 
 - [**npmjs.com**/package/reverse-iterable-set](https://www.npmjs.com/package/reverse-iterable-set)
 - [**github.com**/kleinfreund/reverse-iterable-set](https://github.com/kleinfreund/reverse-iterable-set)
-- [kleinfreund.github.io/reverse-iterable-set](https://kleinfreund.github.io/reverse-iterable-set)
 
 See also:
 
@@ -68,13 +67,13 @@ import { ReverseIterableSet } from './src/reverse-iterable-set.mjs';
 const set = new ReverseIterableSet();
 ```
 
-For more usage examples, have a look at [kleinfreund.github.io/reverse-iterable-set](https://kleinfreund.github.io/reverse-iterable-set).
-
-You can also run the examples locally after cloning the repository:
+For more usage examples, clone the repository and run:
 
 ```shell
 npm install && npm run examples
 ```
+
+Then, open `http://127.0.0.1:8080` in your browser.
 
 
 
