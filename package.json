@@ -18,7 +18,7 @@
     "node": ">=8.5"
   },
   "scripts": {
-    "test": "node --experimental-modules test/tests.mjs",
+    "test": "node --experimental-modules tests/tests.mjs",
     "examples": "node ./node_modules/.bin/http-server"
   },
   "keywords": [
