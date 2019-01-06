@@ -73,7 +73,7 @@ For more usage examples, clone the repository and run:
 npm install && npm run examples
 ```
 
-Then, open `http://127.0.0.1:8080` in your browser.
+Then, open `http://127.0.0.1:8080/examples` in your browser.
 
 
 
