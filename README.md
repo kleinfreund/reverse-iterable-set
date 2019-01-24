@@ -44,7 +44,7 @@ See also:
 Download only the ES module file:
 
 ```shell
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-set/master/src/reverse-iterable-set.mjs
+curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-set/main/src/reverse-iterable-set.mjs
 ```
 
 ### Node.js package
