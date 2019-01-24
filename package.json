@@ -1,7 +1,7 @@
 {
   "name": "reverse-iterable-set",
   "description": "A reverse-iterable set implementation based on the built-in Set object",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": "kleinfreund/reverse-iterable-set",
   "author": {
     "name": "Philipp Rudloff",
