@@ -9,80 +9,109 @@ Links:
 
 See also:
 
-- `ReverseIterableArray`: [reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
+
 - `ReverseIterableMap`: [reverse-iterable-map](https://www.npmjs.com/package/reverse-iterable-map)
+- `ReverseIterableArray`: [reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
 
 
 
 ## Table of Contents
 
-* [Install](#install)
-  * [ES Module](#es-module)
-  * [Node.js package](#nodejs-package)
-* [Usage](#usage)
-* [Tests](#tests)
-* [Documentation](#documentation)
-  * [Constructor](#constructor)
-  * [`add()`](#add)
-  * [`clear()`](#clear)
-  * [`delete()`](#delete)
-  * [`entries()`](#entries)
-  * [`forEach()`](#foreach)
-  * [`forEachReverse()`](#foreachreverse)
-  * [`has()`](#has)
-  * [`iteratorFor()`](#iteratorfor)
-  * [`reverseIterator()`](#reverseiterator)
-  * [`values()`](#values)
-  * [`[Symbol.iterator]()`](#symboliterator)
+
+- [Installation & usage](#installation--usage)
+- [Examples](#examples)
+- [Tests](#tests)
+- [Documentation](#documentation)
+  - [Constructor](#constructor)
+  - [`size`](#size)
+  - [`[Symbol.toStringTag]`](#symboltostringtag)
+  - [`add()`](#add)
+  - [`addFirst()`](#addFirst)
+  - [`clear()`](#clear)
+  - [`delete()`](#delete)
+  - [`entries()`](#entries)
+  - [`forEach()`](#foreach)
+  - [`forEachReverse()`](#foreachreverse)
+  - [`has()`](#has)
+  - [`iteratorFor()`](#iteratorfor)
+  - [`reverseIterator()`](#reverseiterator)
+  - [`values()`](#values)
+  - [`[Symbol.iterator]()`](#symboliterator)
 
 
 
-## Install
+## Installation & usage
 
-### ES Module
+### Browser
 
-Download only the ES module file:
+Download the ES module file …
 
-```shell
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-set/main/src/reverse-iterable-set.mjs
+```sh
+curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-set/main/dist/esm/reverse-iterable-set.mjs
 ```
 
-### Node.js package
-
-*(Requires Node version 8.5 or higher for ES module support)*
-
-Installs the node package as a dependency. It doesn’t have any dependencies itself.
-
-```shell
-npm install --save reverse-iterable-set
-```
-
-Note, that Node.js version 8.5 or higher is required, as it comes with experimental support for ES modules. If you don’t want to use it as an ES module, you will need to transpile the package yourself.
-
-## Usage
+… and import it like this:
 
 ```js
-import { ReverseIterableSet } from './src/reverse-iterable-set.mjs';
+import ReverseIterableSet from 'reverse-iterable-set.mjs';
 
 const set = new ReverseIterableSet();
 ```
 
-For more usage examples, clone the repository and run:
+### Node
 
-```shell
+Install the node package as a dependency …
+
+```sh
+npm install --save reverse-iterable-set
+```
+
+… and import it like this:
+
+- CommonJS module
+
+  ```node
+  const ReverseIterableSet = require('reverse-iterable-set').default;
+
+  const set = new ReverseIterableSet();
+  ```
+
+- ES module
+
+  ```js
+  import ReverseIterableSet from 'reverse-iterable-set/dist/esm/reverse-iterable-set';
+
+  const set = new ReverseIterableSet();
+  ```
+
+- TypeScript module
+
+  ```ts
+  import ReverseIterableSet from 'reverse-iterable-set/src/reverse-iterable-set';
+
+  const set = new ReverseIterableSet();
+  ```
+
+
+
+## Examples
+
+For some live usage examples, clone the repository and run the following:
+
+```sh
 npm install && npm run examples
 ```
 
-Then, open `http://127.0.0.1:8080/examples` in your browser.
+Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browser.
 
 
 
 ## Tests
 
-**… with Node’s experimental ES module feature**:
+In order to run the tests, clone the repository and run the following:
 
-```shell
-npm test
+```sh
+npm install && npm test
 ```
 
 
@@ -103,7 +132,7 @@ new ReverseIterableSet([iterable])
 
 **Parameters**:
 
-* `iterable`: An [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) object.
+- `iterable`: An [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) object.
 
 #### Usage
 
@@ -119,6 +148,33 @@ for (const value of set.reverseIterator()) {
 
 
 
+### `size`
+
+The `size` accessor property returns the number of values in a `ReverseIterableSet` object.
+
+#### Syntax
+
+```
+set.size
+```
+
+#### Usage
+
+```js
+const set = new ReverseIterableSet(['a', 'b', 'c']);
+
+set.size
+//> 3
+```
+
+
+
+### `[Symbol.toStringTag]`
+
+The `ReverseIterableSet[@@toStringTag]` property has an initial value of “ReverseIterableSet”.
+
+
+
 ### `add()`
 
 #### Syntax
@@ -129,11 +185,11 @@ set.add(value);
 
 **Parameters**:
 
-* **value**: Required. The value to add to the `ReverseIterableSet` object.
+- **value**: Required. The value to add to the `ReverseIterableSet` object.
 
 **Return value**:
 
-* The `ReverseIterableSet` object.
+- The `ReverseIterableSet` object.
 
 #### Usage
 
@@ -141,10 +197,13 @@ set.add(value);
 const set = new ReverseIterableSet();
 
 set.add('hey');
-//> set
+//> ReverseIterableSet [ "hey" ]
 
 set.add('beauty');
-//> set
+//> ReverseIterableSet [ "hey", "beauty" ]
+
+set.add('hey');
+//> ReverseIterableSet [ "hey", "beauty" ]
 ```
 
 The `add()` method returns a reference to the set object. This makes the `add()` operation chainable.
@@ -153,6 +212,7 @@ The `add()` method returns a reference to the set object. This makes the `add()`
 const set = new ReverseIterableSet()
   .add('key … is spelled like tea')
   .add('hey … somehow ney');
+//> ReverseIterableSet [ "key … is spelled like tea", "hey … somehow ney" ]
 ```
 
 
@@ -175,6 +235,7 @@ set.clear();
 // Clears the underlying map object (yes, this is correct)
 // Sets the first and last node references to null
 set.clear();
+//> undefined
 ```
 
 ### `delete()`
@@ -187,11 +248,11 @@ set.delete(value);
 
 **Parameters**:
 
-* **value**: Required. The value to remove from the `ReverseIterableSet` object.
+- **value**: Required. The value to remove from the `ReverseIterableSet` object.
 
 **Return value**:
 
-* **Boolean**: Returns `true` if the value existed in the `ReverseIterableSet` object and has been removed, or `false` if the value did not exist.
+- **Boolean**: Returns `true` if the value existed in the `ReverseIterableSet` object and has been removed, or `false` if the value did not exist.
 
 #### Usage
 
@@ -226,6 +287,26 @@ set.entries();
 
 A new `ReverseIterableSet` iterator object.
 
+#### Usage
+
+```js
+const set = new ReverseIterableSet([1, 2, 4]);
+
+const iterator = set.entries();
+
+iterator.next().value;
+//> [1, 1]
+
+iterator.next().value;
+//> [2, 2]
+
+iterator.next().value;
+//> [4, 4]
+
+iterator.next().value;
+//> undefined
+```
+
 
 
 ### `forEach()`
@@ -240,12 +321,32 @@ set.forEach(callback[, thisArg]);
 
 **Parameters**:
 
-* **callback**: Function to execute for each element.
-* **thisArg**: Value to use as `this` when executing `callback`.
+- **callback**: Function to execute for each element.
+- **thisArg**: Value to use as `this` when executing `callback`.
 
 **Return value**:
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+
+#### Usage
+
+```js
+const set = new ReverseIterableSet(['a', 'b', 'c']);
+
+set.forEach(value => {
+  console.log(value);
+});
+//> a
+//> b
+//> c
+
+set.forEach(function (value1, value2, setReference) {
+  console.log(value1, value2, setReference.size);
+});
+//> a a 3
+//> b b 3
+//> c c 3
+```
 
 
 
@@ -261,12 +362,32 @@ set.forEachReverse(callback[, thisArg]);
 
 **Parameters**:
 
-* **callback**: Function to execute for each element.
-* **thisArg**: Value to use as `this` when executing `callback`.
+- **callback**: Function to execute for each element.
+- **thisArg**: Value to use as `this` when executing `callback`.
 
 **Return value**:
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+
+#### Usage
+
+```js
+const set = new ReverseIterableSet(['a', 'b', 'c']);
+
+set.forEachReverse(value => {
+  console.log(value);
+});
+//> c
+//> b
+//> a
+
+set.forEachReverse(function (value1, value2, setReference) {
+  console.log(value1, value2, setReference.size);
+});
+//> c c 3
+//> b b 3
+//> a a 3
+```
 
 
 
@@ -280,11 +401,11 @@ set.has(value);
 
 **Parameters**:
 
-* **value**: Required. The value to test for presence in the `ReverseIterableSet` object.
+- **value**: Required. The value to test for presence in the `ReverseIterableSet` object.
 
 **Return value**:
 
-* **Boolean**: Returns `true` if the value exists in the `ReverseIterableSet` object; otherwise `false`.
+- **Boolean**: Returns `true` if the value exists in the `ReverseIterableSet` object; otherwise `false`.
 
 #### Usage
 
@@ -319,7 +440,7 @@ set.iteratorFor(value);
 
 **Parameters**:
 
-* **value**: Required. The value to start iterating from.
+- **value**: Required. The value to start iterating from.
 
 **Return value**:
 
@@ -376,18 +497,18 @@ The set **reverse-iterator** function, which is the `values().reverseIterator()`
 ```js
 const set = new ReverseIterableSet([1, 2, 4]);
 
-const reverseIterator = set.reverseIterator();
+const iterator = set.reverseIterator();
 
-reverseIterator.next().value;
+iterator.next().value;
 //> 4
 
-reverseIterator.next().value;
+iterator.next().value;
 //> 2
 
-reverseIterator.next().value;
+iterator.next().value;
 //> 1
 
-reverseIterator.next().value;
+iterator.next().value;
 //> undefined
 ```
 
@@ -408,6 +529,26 @@ set.values();
 **Return value**:
 
 A new `ReverseIterableSet` iterator object.
+
+#### Usage
+
+```js
+const set = new ReverseIterableSet([1, 2, 4]);
+
+const iterator = set.values();
+
+iterator.next().value;
+//> 1
+
+iterator.next().value;
+//> 2
+
+iterator.next().value;
+//> 4
+
+iterator.next().value;
+//> undefined
+```
 
 
 

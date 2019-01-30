@@ -1,4 +1,4 @@
-import { ReverseIterableSet } from '../src/reverse-iterable-set.mjs';
+import ReverseIterableSet from '../dist/esm/reverse-iterable-set.mjs';
 
 /**
  * Recursive algorithm to stringify arrays and their content in order to print them like dev tools.
@@ -159,13 +159,13 @@ for (const [value1, value2] of set.entries().reverseIterator()) {
 set
   .add("2")
   .add("4")
-  .addInFront("37")
+  .addFirst("37")
   .add("5")
   `);
   set
     .add('2')
     .add('4')
-    .addInFront('37')
+    .addFirst('37')
     .add('5');
 
   printCommand('[...set.values()]');
