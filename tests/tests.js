@@ -26,6 +26,21 @@ test('Construct set with iterable', t => {
   t.is(set.size, 3, 'Set has three elements.');
 });
 
+test('Construct set with array', t => {
+  const array = ['a', 'b', 'c'];
+  const set = new ReverseIterableSet(array);
+
+  t.is(set.size, 3, 'Set has three elements.');
+});
+
+test('Construct set with array (readonly)', t => {
+  /** @type {ReadonlyArray<string>} */
+  const array = ['a', 'b', 'c'];
+  const set = new ReverseIterableSet(array);
+
+  t.is(set.size, 3, 'Set has three elements.');
+});
+
 test('set.clear()', t => {
   const iterable = ['a', 'b', 'c'].values();
   const set = new ReverseIterableSet(iterable);

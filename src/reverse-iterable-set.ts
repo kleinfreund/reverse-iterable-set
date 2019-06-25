@@ -15,7 +15,7 @@ export default class ReverseIterableSet<V> {
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
    */
-  constructor(iterable?: Iterable<V> | any[]) {
+  constructor(iterable?: Iterable<V>) {
     this._setMap = new Map();
     this._firstNode = null;
     this._lastNode = null;
