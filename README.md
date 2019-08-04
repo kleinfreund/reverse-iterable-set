@@ -79,7 +79,7 @@ npm install --save reverse-iterable-set
 - ES module
 
   ```js
-  import ReverseIterableSet from 'reverse-iterable-set/dist/esm/reverse-iterable-set';
+  import ReverseIterableSet from 'reverse-iterable-set/dist/esm/reverse-iterable-set.mjs';
 
   const set = new ReverseIterableSet();
   ```
