@@ -10,6 +10,7 @@ export default class ReverseIterableSet<V> {
   private _setMap: Map<V, ReverseIterableSetNode<V>>;
   private _firstNode: ReverseIterableSetNode<V> | null;
   private _lastNode: ReverseIterableSetNode<V> | null;
+
   /**
    * An [iterable][1] object that accepts any value as elements.
    *
@@ -34,7 +35,7 @@ export default class ReverseIterableSet<V> {
    *
    * @returns the string tag of the `ReverseIterableSet` class.
    */
-  get [Symbol.toStringTag](): string {
+  get [Symbol.toStringTag]() {
     return 'ReverseIterableSet';
   }
 
@@ -43,14 +44,14 @@ export default class ReverseIterableSet<V> {
    *
    * @returns the size of the `ReverseIterableSet` object.
    */
-  get size(): number {
+  get size() {
     return this._setMap.size;
   }
 
   /**
    * The `clear()` method removes all elements from a `ReverseIterableSet` object.
    */
-  clear(): void {
+  clear() {
     this._setMap.clear();
     this._firstNode = null;
     this._lastNode = null;
@@ -62,7 +63,7 @@ export default class ReverseIterableSet<V> {
    * @returns `true` if an element with the specified key exists in a
    * `ReverseIterableSet` object; otherwise `false`.
    */
-  has(value: V): boolean {
+  has(value: V) {
     return this._setMap.has(value);
   }
 
@@ -72,7 +73,7 @@ export default class ReverseIterableSet<V> {
    * @param value The value to add to the `ReverseIterableSet` object.
    * @returns the `ReverseIterableSet` object.
    */
-  add(value: V): this {
+  add(value: V) {
     if (this.has(value)) {
       return this;
     }
@@ -103,7 +104,7 @@ export default class ReverseIterableSet<V> {
    * @param value The value to add to the `ReverseIterableSet` object.
    * @returns the `ReverseIterableSet` object.
    */
-  addFirst(value: V): this {
+  addFirst(value: V) {
     if (this.has(value)) {
       return this;
     }
@@ -134,7 +135,7 @@ export default class ReverseIterableSet<V> {
    * @returns `true` if a value in the `ReverseIterableSet` object existed and has been
    * removed or `false` if the value did not exist.
    */
-  delete(value: V): boolean {
+  delete(value: V) {
     const node = this._setMap.get(value);
 
     if (node === undefined) {
@@ -176,7 +177,7 @@ export default class ReverseIterableSet<V> {
   forEach(
     callbackfn: (value2: V, value1: V, set: ReverseIterableSet<V>) => void,
     thisArg?: any
-  ): void {
+  ) {
     for (const [value1, value2] of this.entries()) {
       callbackfn.call(thisArg, value2, value1, this);
     }
@@ -189,7 +190,7 @@ export default class ReverseIterableSet<V> {
   forEachReverse(
     callbackfn: (value2: V, value1: V, set: ReverseIterableSet<V>) => void,
     thisArg?: any
-  ): void {
+  ) {
     for (const [value1, value2] of this.entries().reverseIterator()) {
       callbackfn.call(thisArg, value2, value1, this);
     }
@@ -281,9 +282,8 @@ export default class ReverseIterableSet<V> {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
    *
    * @param getIteratorValue
-   * @param [startNode] Node to start iterating from
+   * @param startNode Node to start iterating from
    * @returns a reverse-iterable iterator
-   * @private
    */
   private _iterableIterator(
     getIteratorValue: (node: ReverseIterableSetNode<V>) => [V, V] | V,
@@ -331,6 +331,7 @@ class ReverseIterableSetNode<V> {
   value: V;
   nextNode: ReverseIterableSetNode<V> | null;
   prevNode: ReverseIterableSetNode<V> | null;
+
   /**
    * A value that is part of a `ReverseIterableSet` object.
    */
