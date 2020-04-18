@@ -242,9 +242,8 @@ class ReverseIterableSet {
      * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
      *
      * @param getIteratorValue
-     * @param [startNode] Node to start iterating from
+     * @param startNode Node to start iterating from
      * @returns a reverse-iterable iterator
-     * @private
      */
     _iterableIterator(getIteratorValue, startNode) {
         // Store the this.last node because inside the `reverseIterator()` method, `this` will be
