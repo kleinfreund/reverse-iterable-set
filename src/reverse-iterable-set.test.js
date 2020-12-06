@@ -1,5 +1,5 @@
 import test from 'ava';
-import ReverseIterableSet from '../src/reverse-iterable-set';
+import ReverseIterableSet from './reverse-iterable-set';
 
 test('Construct set without argument', t => {
   const set = new ReverseIterableSet();

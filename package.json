@@ -18,7 +18,7 @@
   "scripts": {
     "prepublishOnly": "npm test",
     "prepack": "npm run build",
-    "test": "nyc ava tests/*.js",
+    "test": "nyc ava **/*.test.js",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm && npm run rename-to-mjs",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
