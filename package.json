@@ -1,42 +1,19 @@
 {
   "name": "reverse-iterable-set",
-  "description": "A reverse-iterable set implementation based on the built-in Set object",
   "version": "4.0.0",
-  "repository": "kleinfreund/reverse-iterable-set",
+  "license": "MIT",
+  "description": "A reverse-iterable set implementation based on the built-in Set object",
   "author": {
     "name": "Philipp Rudloff",
     "url": "https://kleinfreund.de"
   },
-  "license": "MIT",
-  "main": "dist/cjs/reverse-iterable-set",
-  "module": "dist/esm/reverse-iterable-set.mjs",
-  "sideEffects": false,
-  "files": [
-    "src",
-    "dist"
-  ],
-  "scripts": {
-    "prepublishOnly": "npm test",
-    "prepack": "npm run build",
-    "test": "nyc ava **/*.test.js",
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc --module es2015 --outDir dist/esm && npm run rename-to-mjs",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "rename-to-mjs": "mv dist/esm/reverse-iterable-set.js dist/esm/reverse-iterable-set.mjs",
-    "examples": "npm run build && http-server"
+  "homepage": "https://github.com/kleinfreund/reverse-iterable-set",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kleinfreund/reverse-iterable-set.git"
   },
-  "ava": {
-    "babel": {
-      "compileEnhancements": false
-    },
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ]
+  "bugs": {
+    "url": "https://github.com/kleinfreund/reverse-iterable-set/issues"
   },
   "keywords": [
     "set",
@@ -45,15 +22,31 @@
     "iterable",
     "iterator"
   ],
-  "bugs": {
-    "url": "https://github.com/kleinfreund/reverse-iterable-set/issues"
+  "type": "module",
+  "exports": "./dist/reverse-iterable-set.js",
+  "main": "./dist/reverse-iterable-set.js",
+  "module": "./dist/reverse-iterable-set.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rollup --config",
+    "test": "jest",
+    "prestart": "npm run build",
+    "start": "http-server",
+    "prebuild": "npm run test",
+    "prepublishOnly": "npm run test"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
-    "ava": "^3.15.0",
-    "http-server": "^0.12.3",
-    "nyc": "^15.1.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.3"
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/jest": "^27.4.1",
+    "cross-env": "^7.0.3",
+    "http-server": "^14.1.0",
+    "jest": "^27.5.1",
+    "rollup": "^2.70.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
   }
 }

@@ -1,4 +1,4 @@
-import ReverseIterableSet from '../dist/esm/reverse-iterable-set.mjs';
+import ReverseIterableSet from '../dist/reverse-iterable-set.js';
 
 /**
  * Recursive algorithm to stringify arrays and their content in order to print them like dev tools.

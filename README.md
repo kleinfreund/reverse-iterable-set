@@ -18,7 +18,8 @@ See also:
 ## Table of Contents
 
 
-- [Installation & usage](#installation--usage)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Examples](#examples)
 - [Tests](#tests)
 - [Documentation](#documentation)
@@ -40,57 +41,21 @@ See also:
 
 
 
-## Installation & usage
-
-### Browser
-
-Download the ES module file …
+## Installation
 
 ```sh
-curl -O https://raw.githubusercontent.com/kleinfreund/reverse-iterable-set/main/dist/esm/reverse-iterable-set.mjs
+npm install reverse-iterable-set
 ```
 
-… and import it like this:
+
+
+## Usage
 
 ```js
-import ReverseIterableSet from 'reverse-iterable-set.mjs';
+import ReverseIterableSet from 'reverse-iterable-set';
 
 const set = new ReverseIterableSet();
 ```
-
-### Node
-
-Install the node package as a dependency …
-
-```sh
-npm install --save reverse-iterable-set
-```
-
-… and import it like this:
-
-- CommonJS module
-
-  ```node
-  const ReverseIterableSet = require('reverse-iterable-set').default;
-
-  const set = new ReverseIterableSet();
-  ```
-
-- ES module
-
-  ```js
-  import ReverseIterableSet from 'reverse-iterable-set/dist/esm/reverse-iterable-set.mjs';
-
-  const set = new ReverseIterableSet();
-  ```
-
-- TypeScript module
-
-  ```ts
-  import ReverseIterableSet from 'reverse-iterable-set/src/reverse-iterable-set';
-
-  const set = new ReverseIterableSet();
-  ```
 
 
 
@@ -99,7 +64,8 @@ npm install --save reverse-iterable-set
 For some live usage examples, clone the repository and run the following:
 
 ```sh
-npm install && npm run examples
+npm install
+npm start
 ```
 
 Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browser.
@@ -111,7 +77,8 @@ Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browse
 In order to run the tests, clone the repository and run the following:
 
 ```sh
-npm install && npm test
+npm install
+npm test
 ```
 
 
