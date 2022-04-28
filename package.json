@@ -1,6 +1,6 @@
 {
   "name": "reverse-iterable-set",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "description": "A reverse-iterable set implementation based on the built-in Set object",
   "author": {
