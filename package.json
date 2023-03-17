@@ -1,53 +1,53 @@
 {
-  "name": "reverse-iterable-set",
-  "version": "5.0.0",
-  "license": "MIT",
-  "description": "A reverse-iterable set implementation based on the built-in Set object",
-  "author": {
-    "name": "Philipp Rudloff",
-    "url": "https://kleinfreund.de"
-  },
-  "homepage": "https://github.com/kleinfreund/reverse-iterable-set",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kleinfreund/reverse-iterable-set.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kleinfreund/reverse-iterable-set/issues"
-  },
-  "keywords": [
-    "set",
-    "linked-set",
-    "reverse-iterable",
-    "iterable",
-    "iterator"
-  ],
-  "type": "module",
-  "exports": "./dist/reverse-iterable-set.js",
-  "main": "./dist/reverse-iterable-set.js",
-  "module": "./dist/reverse-iterable-set.js",
-  "sideEffects": false,
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "rollup --config",
-    "test": "jest",
-    "prestart": "npm run build",
-    "start": "http-server",
-    "prebuild": "npm run test",
-    "prepublishOnly": "npm run test"
-  },
-  "devDependencies": {
-    "@rollup/plugin-terser": "^0.4.0",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "@types/jest": "^29.4.0",
-    "http-server": "^14.1.1",
-    "jest": "^29.4.1",
-    "jest-environment-jsdom": "^29.4.1",
-    "rollup": "^3.11.0",
-    "ts-jest": "^29.0.5",
-    "tslib": "^2.5.0",
-    "typescript": "^4.9.4"
-  }
+	"name": "reverse-iterable-set",
+	"version": "5.0.0",
+	"license": "MIT",
+	"description": "A reverse-iterable set implementation based on the built-in Set object",
+	"author": {
+		"name": "Philipp Rudloff",
+		"url": "https://kleinfreund.de"
+	},
+	"homepage": "https://github.com/kleinfreund/reverse-iterable-set",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kleinfreund/reverse-iterable-set.git"
+	},
+	"bugs": {
+		"url": "https://github.com/kleinfreund/reverse-iterable-set/issues"
+	},
+	"keywords": [
+		"set",
+		"linked-set",
+		"reverse-iterable",
+		"iterable",
+		"iterator"
+	],
+	"type": "module",
+	"exports": "./dist/reverse-iterable-set.js",
+	"main": "./dist/reverse-iterable-set.js",
+	"module": "./dist/reverse-iterable-set.js",
+	"sideEffects": false,
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "rollup --config",
+		"test": "jest",
+		"prestart": "npm run build",
+		"start": "http-server",
+		"prebuild": "npm run test",
+		"prepublishOnly": "npm run test"
+	},
+	"devDependencies": {
+		"@rollup/plugin-terser": "^0.4.0",
+		"@rollup/plugin-typescript": "^11.0.0",
+		"@types/jest": "^29.4.0",
+		"http-server": "^14.1.1",
+		"jest": "^29.4.1",
+		"jest-environment-jsdom": "^29.4.1",
+		"rollup": "^3.11.0",
+		"ts-jest": "^29.0.5",
+		"tslib": "^2.5.0",
+		"typescript": "^4.9.4"
+	}
 }

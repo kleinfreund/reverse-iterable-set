@@ -13,8 +13,6 @@ See also:
 - `ReverseIterableMap`: [reverse-iterable-map](https://www.npmjs.com/package/reverse-iterable-map)
 - `ReverseIterableArray`: [reverse-iterable-array](https://www.npmjs.com/package/reverse-iterable-array)
 
-
-
 ## Table of Contents
 
 
@@ -23,31 +21,27 @@ See also:
 - [Examples](#examples)
 - [Tests](#tests)
 - [Documentation](#documentation)
-  - [Constructor](#constructor)
-  - [`size`](#size)
-  - [`[Symbol.toStringTag]`](#symboltostringtag)
-  - [`add()`](#add)
-  - [`addFirst()`](#addFirst)
-  - [`clear()`](#clear)
-  - [`delete()`](#delete)
-  - [`entries()`](#entries)
-  - [`forEach()`](#foreach)
-  - [`forEachReverse()`](#foreachreverse)
-  - [`has()`](#has)
-  - [`iteratorFor()`](#iteratorfor)
-  - [`reverseIterator()`](#reverseiterator)
-  - [`values()`](#values)
-  - [`[Symbol.iterator]()`](#symboliterator)
-
-
+	- [Constructor](#constructor)
+	- [`size`](#size)
+	- [`[Symbol.toStringTag]`](#symboltostringtag)
+	- [`add()`](#add)
+	- [`addFirst()`](#addFirst)
+	- [`clear()`](#clear)
+	- [`delete()`](#delete)
+	- [`entries()`](#entries)
+	- [`forEach()`](#foreach)
+	- [`forEachReverse()`](#foreachreverse)
+	- [`has()`](#has)
+	- [`iteratorFor()`](#iteratorfor)
+	- [`reverseIterator()`](#reverseiterator)
+	- [`values()`](#values)
+	- [`[Symbol.iterator]()`](#symboliterator)
 
 ## Installation
 
 ```sh
 npm install reverse-iterable-set
 ```
-
-
 
 ## Usage
 
@@ -56,8 +50,6 @@ import ReverseIterableSet from 'reverse-iterable-set';
 
 const set = new ReverseIterableSet();
 ```
-
-
 
 ## Examples
 
@@ -70,8 +62,6 @@ npm start
 
 Then, open [localhost:8080/examples](http://127.0.0.1:8080/examples) in a browser.
 
-
-
 ## Tests
 
 In order to run the tests, clone the repository and run the following:
@@ -81,13 +71,9 @@ npm install
 npm test
 ```
 
-
-
 ## Documentation
 
 A `ReverseIterableSet` object iterates its elements in insertion or reverse-insertion order — a [`for...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop returns the values for each iteration.
-
-
 
 ### Constructor
 
@@ -107,13 +93,11 @@ new ReverseIterableSet([iterable])
 const set = new ReverseIterableSet([1, 2, 3]);
 
 for (const value of set.reverseIterator()) {
-  console.log(value);
+	console.log(value);
 }
 
 [...set.reverseIterator()]
 ```
-
-
 
 ### `size`
 
@@ -134,13 +118,9 @@ set.size
 //> 3
 ```
 
-
-
 ### `[Symbol.toStringTag]`
 
 The `ReverseIterableSet[@@toStringTag]` property has an initial value of “ReverseIterableSet”.
-
-
 
 ### `add()`
 
@@ -177,12 +157,10 @@ The `add()` method returns a reference to the set object. This makes the `add()`
 
 ```js
 const set = new ReverseIterableSet()
-  .add('key … is spelled like tea')
-  .add('hey … somehow ney');
+	.add('key … is spelled like tea')
+	.add('hey … somehow ney');
 //> ReverseIterableSet [ "key … is spelled like tea", "hey … somehow ney" ]
 ```
-
-
 
 ### `clear()`
 
@@ -236,8 +214,6 @@ set.delete('2');
 //> false
 ```
 
-
-
 ### `entries()`
 
 Returns an iterator containing the `[value, value]` pairs for each value in the `ReverseIterableSet` object in insertion order.
@@ -274,8 +250,6 @@ iterator.next().value;
 //> undefined
 ```
 
-
-
 ### `forEach()`
 
 The `forEach()` method executes a provided function once for each value in the `ReverseIterableSet` object, in insertion order.
@@ -301,21 +275,19 @@ set.forEach(callback[, thisArg]);
 const set = new ReverseIterableSet(['a', 'b', 'c']);
 
 set.forEach(value => {
-  console.log(value);
+	console.log(value);
 });
 //> a
 //> b
 //> c
 
 set.forEach(function (value1, value2, setReference) {
-  console.log(value1, value2, setReference.size);
+	console.log(value1, value2, setReference.size);
 });
 //> a a 3
 //> b b 3
 //> c c 3
 ```
-
-
 
 ### `forEachReverse()`
 
@@ -342,21 +314,19 @@ set.forEachReverse(callback[, thisArg]);
 const set = new ReverseIterableSet(['a', 'b', 'c']);
 
 set.forEachReverse(value => {
-  console.log(value);
+	console.log(value);
 });
 //> c
 //> b
 //> a
 
 set.forEachReverse(function (value1, value2, setReference) {
-  console.log(value1, value2, setReference.size);
+	console.log(value1, value2, setReference.size);
 });
 //> c c 3
 //> b b 3
 //> a a 3
 ```
-
-
 
 ### `has()`
 
@@ -388,8 +358,6 @@ set.has('beauty');
 set.has('beast');
 //> false
 ```
-
-
 
 ### `iteratorFor()`
 
@@ -443,8 +411,6 @@ reverseIterator.next().value;
 //> undefined
 ```
 
-
-
 ### `reverseIterator()`
 
 In theory, following the semantics of `[Symbol.iterator]()`, this should be `[Symbol.reverseIterator]()`. However, as a developer, I cannot define a well-known symbol myself and make use of it. For the time being, the `reverseIterator()` function serves the same purpose.
@@ -478,8 +444,6 @@ iterator.next().value;
 iterator.next().value;
 //> undefined
 ```
-
-
 
 ### `values()`
 
@@ -516,8 +480,6 @@ iterator.next().value;
 iterator.next().value;
 //> undefined
 ```
-
-
 
 ### `[Symbol.iterator]()`
 
