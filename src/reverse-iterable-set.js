@@ -1,6 +1,10 @@
 /**
- * @template T
- * @typedef {import('../types/index.d.js').ReverseIterableIterator<T>} ReverseIterableIterator
+ * @template V
+ * @typedef {import('../types/index.d.js').ReverseIterableIterator<V>} ReverseIterableIterator
+ */
+/**
+ * @template V
+ * @typedef {import('../types/index.d.js').ReverseIterableSetNode<V>} ReverseIterableSetNode
  */
 
 /**
@@ -88,7 +92,11 @@ export default class ReverseIterableSet {
 			return this
 		}
 
-		const node = new ReverseIterableSetNode(value)
+		/** @type {ReverseIterableSetNode<V>} */ const node = {
+			value: value,
+			nextNode: null,
+			prevNode: null,
+		}
 		this._setMap.set(value, node)
 
 		// If there is already a last node it needs to be linked with the new node.
@@ -119,7 +127,11 @@ export default class ReverseIterableSet {
 			return this
 		}
 
-		const node = new ReverseIterableSetNode(value)
+		/** @type {ReverseIterableSetNode<V>} */ const node = {
+			value: value,
+			nextNode: null,
+			prevNode: null,
+		}
 		this._setMap.set(value, node)
 
 		// If there is already a first node it needs to be linked with the new node.
@@ -330,30 +342,5 @@ export default class ReverseIterableSet {
 				}
 			}
 		}
-	}
-}
-
-/**
- * The `ReverseIterableSetNode` object represents a value in a `ReverseIterableSet` object.
- * Its main purpose is storing the value. Additionally, it keeps references to the
- * `ReverseIterableSetNode` objects appearing before and after itself in a `ReverseIterableSet`
- * object.
- *
- * @template V
- */
-class ReverseIterableSetNode {
-	/** @type {V} */ value
-	/** @type {ReverseIterableSetNode<V> | null} */ nextNode
-	/** @type {ReverseIterableSetNode<V> | null} */ prevNode
-
-	/**
-	 * A value that is part of a `ReverseIterableSet` object.
-	 *
-	 * @param {V} value
-	 */
-	constructor(value) {
-		this.value = value
-		this.nextNode = null
-		this.prevNode = null
 	}
 }
