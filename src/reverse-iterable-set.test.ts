@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import ReverseIterableSet from './reverse-iterable-set'
+import ReverseIterableSet from './reverse-iterable-set.js'
 
 describe('ReverseIterableSet', () => {
 	test('Construct set without argument', () => {
