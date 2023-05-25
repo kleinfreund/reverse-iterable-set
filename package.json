@@ -46,13 +46,10 @@
 	},
 	"devDependencies": {
 		"@rollup/plugin-terser": "^0.4.3",
-		"@rollup/plugin-typescript": "^11.1.1",
 		"@vitest/coverage-c8": "^0.31.1",
 		"http-server": "^14.1.1",
 		"jsdom": "^22.0.0",
 		"rollup": "^3.23.0",
-		"tslib": "^2.5.2",
-		"typescript": "^5.0.4",
 		"vitest": "^0.31.1"
 	}
 }

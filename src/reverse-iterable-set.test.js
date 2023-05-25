@@ -206,14 +206,12 @@ describe('ReverseIterableSet', () => {
 
 		let lowerCaseCodePoint = 97 // 97 is the code point for "a", 98 → "b", etc.
 
-		function callbackFn(this: any, value: any) {
+		set.forEach(/** @this {any} */ function callbackFn(value) {
 			expect(this).toBe(set)
 			expect(value).toBe(String.fromCodePoint(lowerCaseCodePoint))
 
 			lowerCaseCodePoint++
-		}
-
-		set.forEach(callbackFn, set)
+		}, set)
 	})
 
 	test('set.forEach() with two-argument-callback', () => {
@@ -234,14 +232,13 @@ describe('ReverseIterableSet', () => {
 
 		let lowerCaseCodePoint = 97 // 97 is the code point for "a", 98 → "b", etc.
 
-		function callbackFn(value1: any, value2: any, setReference: any) {
+		set.forEach(function callbackFn(value1, value2, setReference) {
 			expect(value1).toBe(String.fromCodePoint(lowerCaseCodePoint))
 			expect(value2).toBe(value1)
 			expect(setReference).toBe(set)
 
 			lowerCaseCodePoint++
-		}
-		set.forEach(callbackFn)
+		})
 	})
 
 	test('set.forEach() with thisArg', () => {
@@ -249,10 +246,9 @@ describe('ReverseIterableSet', () => {
 
 		const obj = {}
 
-		function callbackFn(this: any) {
+		set.forEach(/** @this {any} */ function callbackFn() {
 			expect(this).toBe(obj)
-		}
-		set.forEach(callbackFn, obj)
+		}, obj)
 	})
 
 	test('set.forEachReverse() with three-argument-callback and thisArg', () => {
@@ -261,15 +257,14 @@ describe('ReverseIterableSet', () => {
 		let lowerCaseCodePoint = 99 // 99 → "c", etc.
 		const obj = {}
 
-		function callbackFn(this: any, value1: any, value2: any, setReference: any) {
+		set.forEachReverse(/** @this {any} */ function callbackFn(value1, value2, setReference) {
 			expect(value1).toBe(String.fromCodePoint(lowerCaseCodePoint))
 			expect(value2).toBe(value1)
 			expect(setReference).toBe(set)
 			expect(this).toBe(obj)
 
 			lowerCaseCodePoint--
-		}
-		set.forEachReverse(callbackFn, obj)
+		}, obj)
 	})
 
 	test('Set[Symbol.iterator]()', () => {

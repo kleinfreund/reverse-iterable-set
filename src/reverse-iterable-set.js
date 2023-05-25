@@ -1,4 +1,7 @@
-import { ReverseIterableIterator } from '../types/index.d.js'
+/**
+ * @template T
+ * @typedef {import('../types/index.d.js').ReverseIterableIterator<T>} ReverseIterableIterator
+ */
 
 /**
  * A reverse-iterable set implementation based on the built-in [`Set`][1] object.
@@ -7,18 +10,22 @@ import { ReverseIterableIterator } from '../types/index.d.js'
  * iteration. Like `Set`, the order of `ReverseIterableSet` is the insertion order.
  *
  * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+ *
+ * @template V
  */
-export default class ReverseIterableSet<V> {
-	private _setMap: Map<V, ReverseIterableSetNode<V>>
-	private _firstNode: ReverseIterableSetNode<V> | null
-	private _lastNode: ReverseIterableSetNode<V> | null
+export default class ReverseIterableSet {
+	/** @type {Map<V, ReverseIterableSetNode<V>>} */ _setMap
+	/** @type {ReverseIterableSetNode<V> | null} */ _firstNode
+	/** @type {ReverseIterableSetNode<V> | null} */ _lastNode
 
 	/**
 	 * An [iterable][1] object that accepts any value as elements.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
+	 *
+	 * @param {Iterable<V>} [iterable]
 	 */
-	constructor(iterable?: Iterable<V>) {
+	constructor(iterable) {
 		this._setMap = new Map()
 		this._firstNode = null
 		this._lastNode = null
@@ -62,20 +69,21 @@ export default class ReverseIterableSet<V> {
 	/**
 	 * The `has()` method returns a boolean indicating whether `value` exists in the set.
 	 *
-	 * @returns `true` if an element with the specified key exists in a
+	 * @param {V} value
+	 * @returns {boolean} `true` if an element with the specified key exists in a
 	 * `ReverseIterableSet` object otherwise `false`.
 	 */
-	has(value: V) {
+	has(value) {
 		return this._setMap.has(value)
 	}
 
 	/**
 	 * The `add()` method adds a new value to a `ReverseIterableSet` object in insertion order.
 	 *
-	 * @param value The value to add to the `ReverseIterableSet` object.
+	 * @param {V} value The value to add to the `ReverseIterableSet` object.
 	 * @returns the `ReverseIterableSet` object.
 	 */
-	add(value: V) {
+	add(value) {
 		if (this.has(value)) {
 			return this
 		}
@@ -103,10 +111,10 @@ export default class ReverseIterableSet<V> {
 	 * The `addFirst()` method adds a new value to a `ReverseIterableSet` object in
 	 * reverse insertion order or updates the value of an existing value.
 	 *
-	 * @param value The value to add to the `ReverseIterableSet` object.
-	 * @returns the `ReverseIterableSet` object.
+	 * @param {V} value The value to add to the `ReverseIterableSet` object.
+	 * @returns {this} the `ReverseIterableSet` object.
 	 */
-	addFirst(value: V) {
+	addFirst(value) {
 		if (this.has(value)) {
 			return this
 		}
@@ -133,11 +141,11 @@ export default class ReverseIterableSet<V> {
 	/**
 	 * The `delete()` method removes the specified value from a `ReverseIterableSet` object.
 	 *
-	 * @param value The value to remove from the `ReverseIterableSet` object.
-	 * @returns `true` if a value in the `ReverseIterableSet` object existed and has been
+	 * @param {V} value The value to remove from the `ReverseIterableSet` object.
+	 * @returns {boolean} `true` if a value in the `ReverseIterableSet` object existed and has been
 	 * removed or `false` if the value did not exist.
 	 */
-	delete(value: V) {
+	delete(value) {
 		const node = this._setMap.get(value)
 
 		if (node === undefined) {
@@ -175,11 +183,11 @@ export default class ReverseIterableSet<V> {
 	 * [`Set.prototype.forEach`][1].
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach
+	 *
+	 * @param {(value2: V, value1: V, set: ReverseIterableSet<V>) => void} callbackfn
+	 * @param {any} [thisArg]
 	 */
-	forEach(
-		callbackfn: (value2: V, value1: V, set: ReverseIterableSet<V>) => void,
-		thisArg?: any
-	) {
+	forEach(callbackfn, thisArg) {
 		for (const [value1, value2] of this.entries()) {
 			callbackfn.call(thisArg, value2, value1, this)
 		}
@@ -188,11 +196,11 @@ export default class ReverseIterableSet<V> {
 	/**
 	 * The `forEachReverse()` method executes a provided function once per each value/value pair in
 	 * the `ReverseIterableSet` object, in reverse insertion order.
+	 *
+	 * @param {(value2: V, value1: V, set: ReverseIterableSet<V>) => void} callbackfn
+	 * @param {any} [thisArg]
 	 */
-	forEachReverse(
-		callbackfn: (value2: V, value1: V, set: ReverseIterableSet<V>) => void,
-		thisArg?: any
-	) {
+	forEachReverse(callbackfn, thisArg) {
 		for (const [value1, value2] of this.entries().reverseIterator()) {
 			callbackfn.call(thisArg, value2, value1, this)
 		}
@@ -204,9 +212,9 @@ export default class ReverseIterableSet<V> {
 	 *
 	 * [1]:  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/@@iterator
 	 *
-	 * @returns an iterable iterator for the `ReverseIterableSet` object.
+	 * @returns {ReverseIterableIterator<V>} an iterable iterator for the `ReverseIterableSet` object.
 	 */
-	[Symbol.iterator](): ReverseIterableIterator<V> {
+	[Symbol.iterator]() {
 		return this.values()
 	}
 
@@ -215,9 +223,9 @@ export default class ReverseIterableSet<V> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 	 *
-	 *  @returns a reverse iterable iterator for the `ReverseIterableSet` object.
+	 *  @returns {IterableIterator<V>} a reverse iterable iterator for the `ReverseIterableSet` object.
 	 */
-	reverseIterator(): IterableIterator<V> {
+	reverseIterator() {
 		return this.values().reverseIterator()
 	}
 
@@ -227,10 +235,10 @@ export default class ReverseIterableSet<V> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
-	 * @returns an iterable iterator for the `ReverseIterableSet` object.
+	 * @returns {ReverseIterableIterator<[V, V]>} an iterable iterator for the `ReverseIterableSet` object.
 	 */
-	entries(): ReverseIterableIterator<[V, V]> {
-		const getIteratorValue = (node: ReverseIterableSetNode<V>): [V, V] => [node.value, node.value]
+	entries() {
+		const getIteratorValue = /** @type {(node: ReverseIterableSetNode<V>) => [V, V]} */ (node) => [node.value, node.value]
 
 		return this._iterableIterator(getIteratorValue)
 	}
@@ -241,10 +249,10 @@ export default class ReverseIterableSet<V> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
-	 * @returns an iterable iterator for the `ReverseIterableSet` object.
+	 * @returns {ReverseIterableIterator<V>} an iterable iterator for the `ReverseIterableSet` object.
 	 */
-	values(): ReverseIterableIterator<V> {
-		const getIteratorValue = (node: ReverseIterableSetNode<V>): V => node.value
+	values() {
+		const getIteratorValue = /** @type {(node: ReverseIterableSetNode<V>) => V} */ (node) => node.value
 
 		return this._iterableIterator(getIteratorValue)
 	}
@@ -257,11 +265,11 @@ export default class ReverseIterableSet<V> {
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
 	 * @param {V} value The value to start iterating from.
-	 * @returns an iterable iterator for the `ReverseIterableSet` object.
+	 * @returns {ReverseIterableIterator<V>} an iterable iterator for the `ReverseIterableSet` object.
 	 */
-	iteratorFor(value: V): ReverseIterableIterator<V> {
+	iteratorFor(value) {
 		let startNode = this._setMap.get(value)
-		const getIteratorValue = (node: ReverseIterableSetNode<V>): V => node.value
+		const getIteratorValue = /** @type {(node: ReverseIterableSetNode<V>) => V} */ (node) => node.value
 
 		return this._iterableIterator(getIteratorValue, startNode)
 	}
@@ -283,14 +291,11 @@ export default class ReverseIterableSet<V> {
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 	 *
-	 * @param getIteratorValue
-	 * @param startNode Node to start iterating from
-	 * @returns a reverse-iterable iterator
+	 * @param {(node: ReverseIterableSetNode<V>) => [V, V] | V} getIteratorValue
+	 * @param {ReverseIterableSetNode<V>} [startNode] Node to start iterating from
+	 * @returns {ReverseIterableIterator<any>} a reverse-iterable iterator
 	 */
-	private _iterableIterator(
-		getIteratorValue: (node: ReverseIterableSetNode<V>) => [V, V] | V,
-		startNode?: ReverseIterableSetNode<V>
-	): ReverseIterableIterator<any> {
+	_iterableIterator(getIteratorValue, startNode) {
 		// Store the this.last node because inside the `reverseIterator()` method, `this` will be
 		// bound to the `iterableIterator` method, not the `ReverseIterableSet` object.
 		const lastNode = this._lastNode
@@ -305,10 +310,12 @@ export default class ReverseIterableSet<V> {
 				// Return the iterable itself.
 				return this
 			},
+
 			[Symbol.iterator]() {
 				// Return the iterable itself.
 				return this
 			},
+
 			next() {
 				let value
 
@@ -331,16 +338,20 @@ export default class ReverseIterableSet<V> {
  * Its main purpose is storing the value. Additionally, it keeps references to the
  * `ReverseIterableSetNode` objects appearing before and after itself in a `ReverseIterableSet`
  * object.
+ *
+ * @template V
  */
-class ReverseIterableSetNode<V> {
-	value: V
-	nextNode: ReverseIterableSetNode<V> | null
-	prevNode: ReverseIterableSetNode<V> | null
+class ReverseIterableSetNode {
+	/** @type {V} */ value
+	/** @type {ReverseIterableSetNode<V> | null} */ nextNode
+	/** @type {ReverseIterableSetNode<V> | null} */ prevNode
 
 	/**
 	 * A value that is part of a `ReverseIterableSet` object.
+	 *
+	 * @param {V} value
 	 */
-	constructor(value: V) {
+	constructor(value) {
 		this.value = value
 		this.nextNode = null
 		this.prevNode = null
