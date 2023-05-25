@@ -7,9 +7,9 @@
  * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
  */
 export default class ReverseIterableSet<V> {
-	private _setMap: Map<V, ReverseIterableSetNode<V>>;
-	private _firstNode: ReverseIterableSetNode<V> | null;
-	private _lastNode: ReverseIterableSetNode<V> | null;
+	private _setMap: Map<V, ReverseIterableSetNode<V>>
+	private _firstNode: ReverseIterableSetNode<V> | null
+	private _lastNode: ReverseIterableSetNode<V> | null
 
 	/**
 	 * An [iterable][1] object that accepts any value as elements.
@@ -17,13 +17,13 @@ export default class ReverseIterableSet<V> {
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol
 	 */
 	constructor(iterable?: Iterable<V>) {
-		this._setMap = new Map();
-		this._firstNode = null;
-		this._lastNode = null;
+		this._setMap = new Map()
+		this._firstNode = null
+		this._lastNode = null
 
 		if (iterable !== undefined) {
 			for (const element of iterable) {
-				this.add(element);
+				this.add(element)
 			}
 		}
 	}
@@ -36,7 +36,7 @@ export default class ReverseIterableSet<V> {
 	 * @returns the string tag of the `ReverseIterableSet` class.
 	 */
 	get [Symbol.toStringTag]() {
-		return 'ReverseIterableSet';
+		return 'ReverseIterableSet'
 	}
 
 	/**
@@ -45,26 +45,26 @@ export default class ReverseIterableSet<V> {
 	 * @returns the size of the `ReverseIterableSet` object.
 	 */
 	get size() {
-		return this._setMap.size;
+		return this._setMap.size
 	}
 
 	/**
 	 * The `clear()` method removes all elements from a `ReverseIterableSet` object.
 	 */
 	clear() {
-		this._setMap.clear();
-		this._firstNode = null;
-		this._lastNode = null;
+		this._setMap.clear()
+		this._firstNode = null
+		this._lastNode = null
 	}
 
 	/**
 	 * The `has()` method returns a boolean indicating whether `value` exists in the set.
 	 *
 	 * @returns `true` if an element with the specified key exists in a
-	 * `ReverseIterableSet` object; otherwise `false`.
+	 * `ReverseIterableSet` object otherwise `false`.
 	 */
 	has(value: V) {
-		return this._setMap.has(value);
+		return this._setMap.has(value)
 	}
 
 	/**
@@ -75,26 +75,26 @@ export default class ReverseIterableSet<V> {
 	 */
 	add(value: V) {
 		if (this.has(value)) {
-			return this;
+			return this
 		}
 
-		const node = new ReverseIterableSetNode(value);
-		this._setMap.set(value, node);
+		const node = new ReverseIterableSetNode(value)
+		this._setMap.set(value, node)
 
 		// If there is already a last node it needs to be linked with the new node.
 		if (this._lastNode !== null) {
-			node.prevNode = this._lastNode;
-			this._lastNode.nextNode = node;
+			node.prevNode = this._lastNode
+			this._lastNode.nextNode = node
 		}
 
 		// If there is only one entry in the map, set the first node reference.
 		if (this._firstNode === null) {
-			this._firstNode = node;
+			this._firstNode = node
 		}
 
-		this._lastNode = node;
+		this._lastNode = node
 
-		return this;
+		return this
 	}
 
 	/**
@@ -106,26 +106,26 @@ export default class ReverseIterableSet<V> {
 	 */
 	addFirst(value: V) {
 		if (this.has(value)) {
-			return this;
+			return this
 		}
 
-		const node = new ReverseIterableSetNode(value);
-		this._setMap.set(value, node);
+		const node = new ReverseIterableSetNode(value)
+		this._setMap.set(value, node)
 
 		// If there is already a first node it needs to be linked with the new node.
 		if (this._firstNode !== null) {
-			node.nextNode = this._firstNode;
-			this._firstNode.prevNode = node;
+			node.nextNode = this._firstNode
+			this._firstNode.prevNode = node
 		}
 
 		// If there is only one entry in the map, set the last node reference.
 		if (this._lastNode === null) {
-			this._lastNode = node;
+			this._lastNode = node
 		}
 
-		this._firstNode = node;
+		this._firstNode = node
 
-		return this;
+		return this
 	}
 
 	/**
@@ -136,35 +136,35 @@ export default class ReverseIterableSet<V> {
 	 * removed or `false` if the value did not exist.
 	 */
 	delete(value: V) {
-		const node = this._setMap.get(value);
+		const node = this._setMap.get(value)
 
 		if (node === undefined) {
-			return false;
+			return false
 		}
 
 		if (node.prevNode !== null && node.nextNode !== null) {
 			// `node` is in the middle.
-			node.prevNode.nextNode = node.nextNode;
-			node.nextNode.prevNode = node.prevNode;
+			node.prevNode.nextNode = node.nextNode
+			node.nextNode.prevNode = node.prevNode
 		}
 		else if (node.prevNode !== null) {
-			// `node` is the last node; a new last node needs to be linked.
-			node.prevNode.nextNode = null;
-			this._lastNode = node.prevNode;
+			// `node` is the last node a new last node needs to be linked.
+			node.prevNode.nextNode = null
+			this._lastNode = node.prevNode
 		}
 		else if (node.nextNode !== null) {
-			// `node` is the first node; a new first node needs to linked.
-			node.nextNode.prevNode = null;
-			this._firstNode = node.nextNode;
+			// `node` is the first node a new first node needs to linked.
+			node.nextNode.prevNode = null
+			this._firstNode = node.nextNode
 		}
 		else {
 			// `node` is the first and last node.
 			// Both first and last node reference need to be unset.
-			this._firstNode = null;
-			this._lastNode = null;
+			this._firstNode = null
+			this._lastNode = null
 		}
 
-		return this._setMap.delete(value);
+		return this._setMap.delete(value)
 	}
 
 	/**
@@ -179,7 +179,7 @@ export default class ReverseIterableSet<V> {
 		thisArg?: any
 	) {
 		for (const [value1, value2] of this.entries()) {
-			callbackfn.call(thisArg, value2, value1, this);
+			callbackfn.call(thisArg, value2, value1, this)
 		}
 	}
 
@@ -192,7 +192,7 @@ export default class ReverseIterableSet<V> {
 		thisArg?: any
 	) {
 		for (const [value1, value2] of this.entries().reverseIterator()) {
-			callbackfn.call(thisArg, value2, value1, this);
+			callbackfn.call(thisArg, value2, value1, this)
 		}
 	}
 
@@ -205,7 +205,7 @@ export default class ReverseIterableSet<V> {
 	 * @returns an iterable iterator for the `ReverseIterableSet` object.
 	 */
 	[Symbol.iterator](): ReverseIterableIterator<V> {
-		return this.values();
+		return this.values()
 	}
 
 	/**
@@ -216,7 +216,7 @@ export default class ReverseIterableSet<V> {
 	 *  @returns a reverse iterable iterator for the `ReverseIterableSet` object.
 	 */
 	reverseIterator(): IterableIterator<V> {
-		return this.values().reverseIterator();
+		return this.values().reverseIterator()
 	}
 
 	/**
@@ -228,9 +228,9 @@ export default class ReverseIterableSet<V> {
 	 * @returns an iterable iterator for the `ReverseIterableSet` object.
 	 */
 	entries(): ReverseIterableIterator<[V, V]> {
-		const getIteratorValue = (node: ReverseIterableSetNode<V>): [V, V] => [node.value, node.value];
+		const getIteratorValue = (node: ReverseIterableSetNode<V>): [V, V] => [node.value, node.value]
 
-		return this._iterableIterator(getIteratorValue);
+		return this._iterableIterator(getIteratorValue)
 	}
 
 	/**
@@ -242,9 +242,9 @@ export default class ReverseIterableSet<V> {
 	 * @returns an iterable iterator for the `ReverseIterableSet` object.
 	 */
 	values(): ReverseIterableIterator<V> {
-		const getIteratorValue = (node: ReverseIterableSetNode<V>): V => node.value;
+		const getIteratorValue = (node: ReverseIterableSetNode<V>): V => node.value
 
-		return this._iterableIterator(getIteratorValue);
+		return this._iterableIterator(getIteratorValue)
 	}
 
 	/**
@@ -258,10 +258,10 @@ export default class ReverseIterableSet<V> {
 	 * @returns an iterable iterator for the `ReverseIterableSet` object.
 	 */
 	iteratorFor(value: V): ReverseIterableIterator<V> {
-		let startNode = this._setMap.get(value);
-		const getIteratorValue = (node: ReverseIterableSetNode<V>): V => node.value;
+		let startNode = this._setMap.get(value)
+		const getIteratorValue = (node: ReverseIterableSetNode<V>): V => node.value
 
-		return this._iterableIterator(getIteratorValue, startNode);
+		return this._iterableIterator(getIteratorValue, startNode)
 	}
 
 	/**
@@ -291,33 +291,33 @@ export default class ReverseIterableSet<V> {
 	): ReverseIterableIterator<any> {
 		// Store the this.last node because inside the `reverseIterator()` method, `this` will be
 		// bound to the `iterableIterator` method, not the `ReverseIterableSet` object.
-		const lastNode = this._lastNode;
-		let currentNode = startNode !== undefined ? startNode : this._firstNode;
-		let forwards = true;
+		const lastNode = this._lastNode
+		let currentNode = startNode !== undefined ? startNode : this._firstNode
+		let forwards = true
 
 		return {
 			reverseIterator() {
-				currentNode = startNode !== undefined ? startNode : lastNode;
-				forwards = false;
+				currentNode = startNode !== undefined ? startNode : lastNode
+				forwards = false
 
 				// Return the iterable itself.
-				return this;
+				return this
 			},
 			[Symbol.iterator]() {
 				// Return the iterable itself.
-				return this;
+				return this
 			},
 			next() {
-				let value;
+				let value
 
 				if (currentNode) {
-					value = getIteratorValue(currentNode);
-					currentNode = forwards ? currentNode.nextNode : currentNode.prevNode;
+					value = getIteratorValue(currentNode)
+					currentNode = forwards ? currentNode.nextNode : currentNode.prevNode
 				}
 
-				return iteratorResult(value);
+				return iteratorResult(value)
 			}
-		};
+		}
 	}
 }
 
@@ -328,17 +328,17 @@ export default class ReverseIterableSet<V> {
  * object.
  */
 class ReverseIterableSetNode<V> {
-	value: V;
-	nextNode: ReverseIterableSetNode<V> | null;
-	prevNode: ReverseIterableSetNode<V> | null;
+	value: V
+	nextNode: ReverseIterableSetNode<V> | null
+	prevNode: ReverseIterableSetNode<V> | null
 
 	/**
 	 * A value that is part of a `ReverseIterableSet` object.
 	 */
 	constructor(value: V) {
-		this.value = value;
-		this.nextNode = null;
-		this.prevNode = null;
+		this.value = value
+		this.nextNode = null
+		this.prevNode = null
 	}
 }
 
@@ -351,8 +351,8 @@ class ReverseIterableSetNode<V> {
 function iteratorResult<T>(value: T): IteratorResult<T> {
 	return {
 		value: value,
-		done: value === undefined
-	};
+		done: value === undefined,
+	}
 }
 
 /**
@@ -361,5 +361,5 @@ function iteratorResult<T>(value: T): IteratorResult<T> {
  * `[Symbol.reverseIterator]`.
  */
 interface ReverseIterableIterator<T> extends IterableIterator<T> {
-	reverseIterator(): IterableIterator<T>;
+	reverseIterator(): IterableIterator<T>
 }
