@@ -91,7 +91,7 @@ export default class ReverseIterableSet {
 		}
 
 		/** @type {ReverseIterableSetNode<V>} */ const node = {
-			value: value,
+			value,
 			nextNode: null,
 			prevNode: null,
 		}
@@ -322,7 +322,7 @@ export default class ReverseIterableSet {
 					value: value,
 					done: value === undefined,
 				}
-			}
+			},
 		}
 	}
 }
