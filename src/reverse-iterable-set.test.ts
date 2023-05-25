@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import ReverseIterableSet from './reverse-iterable-set';
 
 describe('ReverseIterableSet', () => {
