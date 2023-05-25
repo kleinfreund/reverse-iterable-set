@@ -10,8 +10,7 @@
 /**
  * A reverse-iterable set implementation based on the built-in [`Set`][1] object.
  *
- * It exposes its order via iterable iterators which can be used for both forwards and backwards
- * iteration. Like `Set`, the order of `ReverseIterableSet` is the insertion order.
+ * It exposes its order via iterable iterators which can be used for both forwards and backwards iteration. Like `Set`, the order of `ReverseIterableSet` is the insertion order.
  *
  * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
  *
@@ -74,8 +73,7 @@ export default class ReverseIterableSet {
 	 * The `has()` method returns a boolean indicating whether `value` exists in the set.
 	 *
 	 * @param {V} value
-	 * @returns {boolean} `true` if an element with the specified key exists in a
-	 * `ReverseIterableSet` object otherwise `false`.
+	 * @returns {boolean} `true` if an element with the specified key exists in a `ReverseIterableSet` object otherwise `false`.
 	 */
 	has(value) {
 		return this._setMap.has(value)
@@ -116,8 +114,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The `addFirst()` method adds a new value to a `ReverseIterableSet` object in
-	 * reverse insertion order or updates the value of an existing value.
+	 * The `addFirst()` method adds a new value to a `ReverseIterableSet` object in reverse insertion order or updates the value of an existing value.
 	 *
 	 * @param {V} value The value to add to the `ReverseIterableSet` object.
 	 * @returns {this} the `ReverseIterableSet` object.
@@ -154,8 +151,7 @@ export default class ReverseIterableSet {
 	 * The `delete()` method removes the specified value from a `ReverseIterableSet` object.
 	 *
 	 * @param {V} value The value to remove from the `ReverseIterableSet` object.
-	 * @returns {boolean} `true` if a value in the `ReverseIterableSet` object existed and has been
-	 * removed or `false` if the value did not exist.
+	 * @returns {boolean} `true` if a value in the `ReverseIterableSet` object existed and has been removed or `false` if the value did not exist.
 	 */
 	delete(value) {
 		const node = this._setMap.get(value)
@@ -190,9 +186,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The `forEach()` method executes a provided function once per each value/value pair in the
-	 * `ReverseIterableSet` object, in insertion order. For reference, see
-	 * [`Set.prototype.forEach`][1].
+	 * The `forEach()` method executes a provided function once per each value/value pair in the `ReverseIterableSet` object, in insertion order. For reference, see [`Set.prototype.forEach`][1].
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach
 	 *
@@ -206,8 +200,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The `forEachReverse()` method executes a provided function once per each value/value pair in
-	 * the `ReverseIterableSet` object, in reverse insertion order.
+	 * The `forEachReverse()` method executes a provided function once per each value/value pair in the `ReverseIterableSet` object, in reverse insertion order.
 	 *
 	 * @param {(value2: V, value1: V, set: ReverseIterableSet<V>) => void} callbackfn
 	 * @param {any} [thisArg]
@@ -219,8 +212,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The initial value of the [@@iterator][1] property is the same function object as the initial
-	 * value of the `values` property.
+	 * The initial value of the [@@iterator][1] property is the same function object as the initial value of the `values` property.
 	 *
 	 * [1]:  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/@@iterator
 	 *
@@ -242,8 +234,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The `entries()` method returns a new [Iterator][1] object that contains the `[value, value]`
-	 * pairs for each value in a `ReverseIterableSet` object in insertion order.
+	 * The `entries()` method returns a new [Iterator][1] object that contains the `[value, value]` pairs for each value in a `ReverseIterableSet` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
@@ -256,8 +247,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The `values()` method returns a new [Iterator][1] object that contains the values in a
-	 * `ReverseIterableSet` object in insertion order.
+	 * The `values()` method returns a new [Iterator][1] object that contains the values in a `ReverseIterableSet` object in insertion order.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
@@ -270,9 +260,7 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * The `iteratorFor()` method returns a new [Iterator][1] object that contains the
-	 * `[value, value]` pairs for each element in a `ReverseIterableSet` object in insertion order
-	 *  **starting with the pair specified by the `value` parameter**.
+	 * The `iteratorFor()` method returns a new [Iterator][1] object that contains the `[value, value]` pairs for each element in a `ReverseIterableSet` object in insertion order **starting with the pair specified by the `value` parameter**.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators
 	 *
@@ -287,19 +275,13 @@ export default class ReverseIterableSet {
 	}
 
 	/**
-	 * Returns an object which is both an iterable and an iterator. It fulfills the requirements of
-	 * the [iteration protocols][1] and also allowing reverse-iteration (not part of the mentioned
-	 * protocols).
+	 * Returns an object which is both an iterable and an iterator. It fulfills the requirements of the [iteration protocols][1] and also allowing reverse-iteration (not part of the mentioned protocols).
 	 *
-	 * - **Iterator requirements**: An object that implements a function `next`. This function
-	 *   returns an object with two properties: `value` and `done`.
+	 * - **Iterator requirements**: An object that implements a function `next`. This function returns an object with two properties: `value` and `done`.
 	 *
-	 * - **Iterable requirements**: An object that implements a function `[Symbol.iterator]()`. This
-	 *   function returns an iterator.
+	 * - **Iterable requirements**: An object that implements a function `[Symbol.iterator]()`. This function returns an iterator.
 	 *
-	 * - **Reverse-iterable requirements** (non-standard): An object that implements a function
-	 *   `reverseIterator`. This function returns an iterator with the special behavior of iterating
-	 *   in reverse insertion order. This is non-standard behavior.
+	 * - **Reverse-iterable requirements** (non-standard): An object that implements a function `reverseIterator`. This function returns an iterator with the special behavior of iterating in reverse insertion order. This is non-standard behavior.
 	 *
 	 * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 	 *
