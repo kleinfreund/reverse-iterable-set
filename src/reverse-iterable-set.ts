@@ -315,7 +315,10 @@ export default class ReverseIterableSet<V> {
 					currentNode = forwards ? currentNode.nextNode : currentNode.prevNode
 				}
 
-				return iteratorResult(value)
+				return {
+					value: value,
+					done: value === undefined,
+				}
 			}
 		}
 	}
@@ -339,19 +342,6 @@ class ReverseIterableSetNode<V> {
 		this.value = value
 		this.nextNode = null
 		this.prevNode = null
-	}
-}
-
-/**
- * Returns an `IteratorResult` object as per the following rules:
- *
- * - If `value` is not `undefined`, `done` is `false`.
- * - If `value` is `undefined`, `done` is `true`. In this case, `value` may be omitted.
- */
-function iteratorResult<T>(value: T): IteratorResult<T> {
-	return {
-		value: value,
-		done: value === undefined,
 	}
 }
 
